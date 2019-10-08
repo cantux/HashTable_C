@@ -2,8 +2,8 @@
 #include <string.h>
 
 #include "ht.h"
-#include "ht_linear_prob.h"
-#include "ht_simple_strat.h"
+#include "strat/ht_linear_prob.h"
+#include "strat/ht_simple_strat.h"
 #include "math.h"
 
 #define CAPACITY 0xFFFF
@@ -27,16 +27,18 @@ ht_table* ht_new(int strategy) {
       case LINEAR_PROBING:
         ht->get = ht_linear_get;
         ht->set = ht_linear_set;
+        ht->remove = ht_linear_remove;
         break;
       case SIMPLE_STRAT:
       defualt:
-        ht->get = ht_linear_get;
-        ht->set = ht_linear_set;
+        ht->get = ht_simple_get;
+        ht->set = ht_simple_set;
+        ht->remove = ht_simple_remove;
     }
     return ht;
 }
 
-static void ht_del_item(ht_item* i) {
+void ht_del_item(ht_item* i) {
     free(i->key);
     free(i->value);
     free(i);
@@ -59,6 +61,10 @@ int ht_set(ht_table* h_table, ht_item* item) {
 
 ht_item* ht_get(ht_table* h_table, const char* key) {
   return h_table->get(h_table, key);
+}
+
+int ht_remove(ht_table* table, const char* key) {
+  return table->remove(table, key);
 }
 
 int ht_hash(const char* key) {

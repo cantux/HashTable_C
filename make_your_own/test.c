@@ -1,9 +1,10 @@
 #include "stdio.h"
+#include "stdlib.h"
 
 #include "ht.h"
 
 int main(void) {
-  
+  free(0);  
   ht_table* t = ht_new(SIMPLE_STRAT);
   if(!t) {
     return -1;
