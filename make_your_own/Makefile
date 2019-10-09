@@ -18,5 +18,6 @@ $(strat_objects): %.o: %.c
 
 clean:
 	rm -rf $(build_dir)
+	rm test
 
 

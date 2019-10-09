@@ -18,17 +18,12 @@ typedef struct ht_table {
     int (*remove)(struct ht_table*, const char*);
 } ht_table;
 
-
 ht_item* ht_new_item(const char* k, const char* v);
-
 ht_table* ht_new(int strategy);
-
 void ht_del_item(ht_item* i);
 
 int ht_set(ht_table* htable, ht_item* item);
-
 ht_item* ht_get(ht_table* htable, const char* key);
-
 int ht_remove(ht_table* htable, const char* key);
 
 int ht_hash(const char* key);

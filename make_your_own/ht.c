@@ -1,10 +1,11 @@
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 #include "ht.h"
 #include "strat/ht_linear_prob.h"
 #include "strat/ht_simple_strat.h"
-#include "math.h"
+#include "util.h"
 
 #define CAPACITY 0xFFFF
 #define ALPHABET_SIZE 128
@@ -75,3 +76,4 @@ int ht_hash(const char* key) {
   }
   return hash;
 }
+
